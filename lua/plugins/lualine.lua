@@ -22,8 +22,27 @@ return {
       require("lualine").setup({
         options = {
           theme = "catppuccin",
-          section_separators = "",
-          component_separators = "",
+          icons_enabled = true,
+          component_separators = { left = '', right = ''},
+          section_separators = { left = '', right = ''},
+          refresh = {
+                statusline = 1000,
+                tabline = 1000,
+                winbar = 1000,
+                refresh_time = 10,
+                events = {
+                  'WinEnter',
+                  'BufEnter',
+                  'BufWritePost',
+                  'SessionLoadPost',
+                  'FileChangedShellPost',
+                  'VimResized',
+                  'Filetype',
+                  'CursorMoved',
+                  'CursorMovedI',
+                  'ModeChanged',
+                },
+          }
         },
         sections = {
           lualine_a = { "mode" },
