@@ -1,3 +1,3 @@
-require ("Personal")
+require ("Mine")
 
 require ("config.lazy")

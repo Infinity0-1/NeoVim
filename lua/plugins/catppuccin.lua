@@ -7,7 +7,7 @@ return {
     require("catppuccin").setup({
       flavour = "macchiato",
       transparent_background = true,
-      show_end_of_buffer = false,
+      show_end_of_buffer = true,
       term_colors = true,
       styles = {
         comments = { "italic" },
@@ -45,12 +45,13 @@ return {
       color_overrides = {},
       custom_highlights = {},
       default_integrations = true,
-      auto_integrations = false,
+      auto_integrations = true,
       integrations = {
         cmp = true,
         gitsigns = true,
         nvimtree = true,
         notify = false,
+        treesitter = true,
         mini = {
           enabled = true,
           indentscope_color = "",
