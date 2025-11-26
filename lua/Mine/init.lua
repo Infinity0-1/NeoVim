@@ -1,5 +1,6 @@
 vim.opt.shell = "/usr/bin/zsh"
 vim.opt.shellcmdflag = "-ic"
+vim.opt.cmdheight = 0
 
 vim.opt.clipboard = "unnamedplus"
 
