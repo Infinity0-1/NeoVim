@@ -1,1 +1,1 @@
-require ("Personel")
+require ("Personal")
