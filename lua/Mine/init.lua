@@ -56,3 +56,22 @@ vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true })
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', 'Pp', [[:call system('Pdf- ' . shellescape(expand('%:p')))<CR>]], {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'PP', [[:call system('Pdf+ ' . shellescape(expand('%:p')))<CR>]], {noremap = true, silent = true})
+
+vim.api.nvim_set_keymap('n', '<leader>lP', [[:call system('Pdf- ' . shellescape(expand('%:p')))<CR>]], {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>lF', [[:call system('Pdf+ ' . shellescape(expand('%:p')))<CR>]], {noremap = true, silent = true})
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+  callback = function()
+    if vim.bo.filetype ~= 'commit' then
+      vim.schedule(function()
+        local line = vim.fn.line("'\"")
+        if line >= 1 and line <= vim.fn.line("$") then
+          vim.cmd([[normal! g`"]])
+        end
+      end)
+    end
+  end,
+})
