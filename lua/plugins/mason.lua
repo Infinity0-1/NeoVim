@@ -6,7 +6,7 @@ return {
         ui = {
           icons = {
             package_installed = "✓",
-            package_pending = "➜", 
+            package_pending = "➜",
             package_uninstalled = "✗"
           }
         }
@@ -16,10 +16,7 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = { "clangd", "pyright", "lua_ls" },
-        automatic_installation = true,
-      })
+      require("mason-lspconfig").setup()
     end,
   },
 }

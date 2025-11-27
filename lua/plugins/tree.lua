@@ -16,7 +16,7 @@ return {
         },
       },
       view = {
-        width = 18,
+        width = 16,
         side = "left",
         adaptive_size = false,
       },
@@ -31,7 +31,7 @@ return {
         },
       },
       filters = {
-        dotfiles = false,
+        dotfiles = true,
       },
       git = {
         enable = true,
