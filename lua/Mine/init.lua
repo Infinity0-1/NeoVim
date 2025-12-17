@@ -15,9 +15,6 @@ vim.opt.numberwidth = 1
 
 vim.opt.list = true
 vim.opt.listchars = {trail = '-',}
--- vim.opt.signcolumn = "yes"
--- vim.opt.colorcolumn = "105"
--- vim.opt.foldcolumn = "1"
 
 vim.opt.spell = true
 vim.opt.spelllang = "en_us"
@@ -45,13 +42,6 @@ vim.cmd [[
   highlight FloatBorder guibg=none ctermbg=none
   highlight Pmenu guibg=none ctermbg=none
 ]]
-
-vim.api.nvim_create_autocmd("BufEnter", {
-  callback = function()
-    vim.keymap.set({'n','v','o'}, 'j', 'gj', { buffer = true, noremap = true, silent = true })
-    vim.keymap.set({'n','v','o'}, 'k', 'gk', { buffer = true, noremap = true, silent = true })
-  end,
-})
 
 vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("v", "<", "<gv")
@@ -92,6 +82,7 @@ vim.api.nvim_set_keymap('n', '<leader>R',
   .. "<cmd>CompilerRedo<cr>",
  { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>t', "<cmd>CompilerToggleResults<cr>", { noremap = true, silent = true })
+vim.keymap.set("n", "<N>", ":new<CR>", { noremap = true, silent = true })
 
 local modes = { "n", "i", "v", "t", "x", "s", "o" }
 for _, mode in ipairs(modes) do
