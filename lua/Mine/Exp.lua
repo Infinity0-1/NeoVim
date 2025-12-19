@@ -1,5 +1,0 @@
-vim.keymap.set("n", "<leader>P", function()
-  vim.cmd("w")
-  local file = vim.fn.expand("%")
-  vim.cmd("!" .. "manim -pqh " .. file)
-end, { desc = "Save and run manim on current file" })
