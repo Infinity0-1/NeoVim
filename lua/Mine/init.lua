@@ -63,6 +63,12 @@ vim.keymap.set("n", "<leader>P", function()
   vim.cmd("!" .. "manim -pqh " .. file)
 end, { desc = "Save and run manim on current file" })
 
+vim.keymap.set("n", "<leader>p", function()
+  vim.cmd("w")
+  local file = vim.fn.expand("%")
+  vim.cmd("!" .. "manim -pqh " .. file)
+end, { desc = "Save and run manim on current file" })
+
 vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function()
     if vim.bo.filetype ~= 'commit' then
