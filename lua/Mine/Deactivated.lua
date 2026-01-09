@@ -22,3 +22,8 @@
 --   pcall(vim.keymap.del, mode, "<C-k>")
 --   pcall(vim.keymap.del, mode, "<C-l>")
 -- end
+
+-- For keeping d-deleted words in the yanking registry:
+
+-- vim.keymap.set({ "n", "x" }, "d", '"_d')
+-- vim.keymap.set({ "n", "x" }, "D", '"_D')
