@@ -17,7 +17,7 @@ return {
     telescope.setup({
       defaults = {
         sorting_strategy = "ascending",
-        layout_config = { prompt_position = "top" },
+        layout_config = { prompt_position = "bottom" },
       },
       pickers = {
         find_files = {
