@@ -5,6 +5,7 @@ return {
     dependencies = { "kyazdani42/nvim-web-devicons", "catppuccin/nvim" },
     config = function()
       local devicons = require("nvim-web-devicons")
+      local date = { "datetime", style = "%H:%M" }
       local filename_component = {
         function()
           local name = vim.fn.expand("%:t:r")
@@ -14,6 +15,19 @@ return {
           else
             return name
           end
+        end,
+        color = { fg = "#f5e0dc" },
+        padding = { left = 1, right = 1 },
+      }
+      local battery_component = {
+        function()
+          local cap = io.open("/sys/class/power_supply/BAT1/capacity", "r")
+          if not cap then
+            return ""
+          end
+          local capacity = cap:read("*a"):gsub("%s+", "")
+          cap:close()
+          return capacity
         end,
         color = { fg = "#f5e0dc" },
         padding = { left = 1, right = 1 },
@@ -29,7 +43,7 @@ return {
                 statusline = 1000,
                 tabline = 1000,
                 winbar = 1000,
-                refresh_time = 10,
+                refresh_time = 3,
                 events = {
                   'WinEnter',
                   'BufEnter',
@@ -46,11 +60,11 @@ return {
         },
         sections = {
           lualine_a = { "mode" },
-          lualine_b = { "branch" },
+          lualine_b = { "branch", "progress"},
           lualine_c = { "diff" },
           lualine_x = { filename_component },
-          lualine_y = { "progress" },
-          lualine_z = { "location" },
+          lualine_y = { battery_component },
+          lualine_z = { date },
         },
         inactive_sections = {
           lualine_a = {},
