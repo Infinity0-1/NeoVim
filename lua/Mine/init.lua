@@ -53,22 +53,24 @@ vim.keymap.set("n", "<C-h>", "<C-w>h", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
+vim.keymap.set("n", "<Tab>", "gvo<Esc>")
+vim.keymap.set({ "n", "x" }, "x", '"_x')
+vim.keymap.set({ "n", "x" }, "X", '"_X')
+vim.keymap.set({ "n", "x" }, "c", '"_c')
+vim.keymap.set({ "n", "x" }, "C", '"_C')
 
 vim.api.nvim_set_keymap('n', 'Ff', [[:w<CR>:call system('Pdf- ' . shellescape(expand('%:p')))<CR>]], {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'FF', [[:w<CR>:call system('Pdf+ ' . shellescape(expand('%:p')))<CR>]], {noremap = true, silent = true})
-
 vim.keymap.set("n", "<leader>P", function()
   vim.cmd("w")
   local file = vim.fn.expand("%")
   vim.cmd("!" .. "manim -pqh " .. file)
 end, { desc = "Save and run manim on current file" })
-
 vim.keymap.set("n", "<leader>p", function()
   vim.cmd("w")
   local file = vim.fn.expand("%")
   vim.cmd("!" .. "manim -pqh " .. file)
 end, { desc = "Save and run manim on current file" })
-
 vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function()
     if vim.bo.filetype ~= 'commit' then
