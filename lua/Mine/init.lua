@@ -59,14 +59,22 @@ vim.keymap.set({ "n", "x" }, "X", '"_X')
 vim.keymap.set({ "n", "x" }, "c", '"_c')
 vim.keymap.set({ "n", "x" }, "C", '"_C')
 
+vim.keymap.set("n", "dd", function()
+  if vim.api.nvim_get_current_line() == "" then
+    vim.cmd('normal! "_dd')
+  else
+    vim.cmd('normal! dd')
+  end
+end, { silent = true })
+
 vim.api.nvim_set_keymap('n', 'Ff', [[:w<CR>:call system('Pdf- ' . shellescape(expand('%:p')))<CR>]], {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'FF', [[:w<CR>:call system('Pdf+ ' . shellescape(expand('%:p')))<CR>]], {noremap = true, silent = true})
-vim.keymap.set("n", "<leader>P", function()
+vim.keymap.set("n", "<leader>PP", function()
   vim.cmd("w")
   local file = vim.fn.expand("%")
   vim.cmd("!" .. "manim -pqh " .. file)
 end, { desc = "Save and run manim on current file" })
-vim.keymap.set("n", "<leader>p", function()
+vim.keymap.set("n", "<leader>Pp", function()
   vim.cmd("w")
   local file = vim.fn.expand("%")
   vim.cmd("!" .. "manim -pqh " .. file)

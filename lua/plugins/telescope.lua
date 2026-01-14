@@ -1,6 +1,5 @@
 return {
   'nvim-telescope/telescope.nvim',
-  tag = '0.1.6',
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-tree/nvim-web-devicons',
@@ -17,7 +16,14 @@ return {
     telescope.setup({
       defaults = {
         sorting_strategy = "ascending",
-        layout_config = { prompt_position = "bottom" },
+        layout_strategy = "horizontal",
+        layout_config = {
+          prompt_position = "bottom",
+          preview_width = 0.6,
+        },
+        preview = {
+          treesitter = true,
+        },
       },
       pickers = {
         find_files = {

@@ -27,9 +27,9 @@ return {
           end
           local capacity = cap:read("*a"):gsub("%s+", "")
           cap:close()
-          return capacity
+          return capacity .. "%%"
         end,
-        color = { fg = "#f5e0dc" },
+        color = { fg = "#ffffff" },
         padding = { left = 1, right = 1 },
       }
 
