@@ -6,6 +6,6 @@ return {
   keys = {
   { "<c-n>", "<Plug>(YankyCycleForward)" },
   { "<c-p>", "<Plug>(YankyCycleBackward)" },
-  { "P", "<cmd>Telescope yank_history<cr>" },
+  { "<Space>p", "<cmd>Telescope yank_history<cr>" },
   },
 }
