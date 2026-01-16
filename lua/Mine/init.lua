@@ -58,7 +58,6 @@ vim.keymap.set({ "n", "x" }, "x", '"_x')
 vim.keymap.set({ "n", "x" }, "X", '"_X')
 vim.keymap.set({ "n", "x" }, "c", '"_c')
 vim.keymap.set({ "n", "x" }, "C", '"_C')
-
 vim.keymap.set("n", "dd", function()
   if vim.api.nvim_get_current_line() == "" then
     vim.cmd('normal! "_dd')
@@ -88,6 +87,35 @@ vim.api.nvim_create_autocmd("BufReadPost", {
           vim.cmd([[normal! g`"]])
         end
       end)
+    end
+  end,
+})
+vim.api.nvim_create_autocmd("InsertCharPre", {
+  pattern = { "*.md", "*.txt", "*.tex" },
+  callback = function()
+    local c = vim.v.char
+
+    if c == '"' then
+      local col = vim.fn.col('.') - 1
+      local line = vim.fn.getline('.')
+      local before = line:sub(1, col)
+
+      if col == 0 or before:match("[%s%(%[{]$") then
+        vim.v.char = "“"
+      else
+        vim.v.char = "”"
+      end
+
+    elseif c == "'" then
+      local col = vim.fn.col('.') - 1
+      local line = vim.fn.getline('.')
+      local before = line:sub(1, col)
+
+      if col == 0 or before:match("[%s%(%[{]$") then
+        vim.v.char = "‘"
+      else
+        vim.v.char = "’"
+      end
     end
   end,
 })
