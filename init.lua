@@ -1,5 +1,5 @@
-require ("config.lazy")
+require ("lazy.lazy")
 
-require ("Mine")
+require ("my configs")
 
-require ("Mine.Exp")
+require ("my configs.exp")
