@@ -1,5 +1,0 @@
-vim.keymap.set("n", "<C-1>", "<Cmd>BufferGoto 1<CR>")
-vim.keymap.set("n", "<C-2>", "<Cmd>BufferGoto 2<CR>")
-vim.keymap.set("n", "<C-3>", "<Cmd>BufferGoto 3<CR>")
-vim.keymap.set("n", "<C-4>", "<Cmd>BufferGoto 4<CR>")
-vim.keymap.set("n", "<C-5>", "<Cmd>BufferGoto 5<CR>")

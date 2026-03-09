@@ -1,8 +1,7 @@
 vim.opt.shell = "/usr/bin/zsh"
 vim.opt.shellcmdflag = "-ic"
-vim.opt.cmdheight = 0
-
 vim.opt.clipboard = "unnamedplus"
+vim.opt.cmdheight = 0
 
 vim.opt.linebreak = true
 vim.opt.wrap = true
@@ -13,16 +12,15 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.numberwidth = 1
 
-vim.opt.list = true
+vim.opt.list = false
 vim.opt.listchars = {trail = '-',}
-
 vim.opt.spell = true
 vim.opt.spelllang = "en_us"
 
-vim.opt.tabstop = 4
+vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
-vim.opt.expandtab = true
+vim.opt.tabstop = 4
 vim.opt.smartindent = true
 
 local undo_dir = vim.fn.stdpath('cache') .. '/undo'
@@ -50,8 +48,10 @@ vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true })
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-h>", "<C-w>h", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-h>", "<C-w>h", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-l>", "<C-w>l", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
 vim.keymap.set("n", "<Tab>", "gvo<Esc>")
 vim.keymap.set("n", "<A-,>", "<Cmd>BufferPrevious<CR>")
@@ -70,6 +70,11 @@ vim.keymap.set({ "n", "x" }, "x", '"_x')
 vim.keymap.set({ "n", "x" }, "X", '"_X')
 vim.keymap.set({ "n", "x" }, "c", '"_c')
 vim.keymap.set({ "n", "x" }, "C", '"_C')
+vim.keymap.set("n", "<C-1>", "<Cmd>BufferGoto 1<CR>")
+vim.keymap.set("n", "<C-2>", "<Cmd>BufferGoto 2<CR>")
+vim.keymap.set("n", "<C-3>", "<Cmd>BufferGoto 3<CR>")
+vim.keymap.set("n", "<C-4>", "<Cmd>BufferGoto 4<CR>")
+vim.keymap.set("n", "<C-5>", "<Cmd>BufferGoto 5<CR>")
 vim.keymap.set("n", "dd", function()
   if vim.api.nvim_get_current_line() == "" then
     vim.cmd('normal! "_dd')
