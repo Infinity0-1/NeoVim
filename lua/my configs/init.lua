@@ -23,7 +23,9 @@ vim.opt.softtabstop = 4
 vim.opt.tabstop = 4
 vim.opt.smartindent = true
 
+local manim_term
 local undo_dir = vim.fn.stdpath('cache') .. '/undo'
+
 if vim.fn.isdirectory(undo_dir) == 0 then
   vim.fn.mkdir(undo_dir, 'p')
 end
@@ -87,13 +89,15 @@ vim.api.nvim_set_keymap('n', 'FF', [[:w<CR>:call system('Pdf+ ' . shellescape(ex
 vim.keymap.set("n", "<leader>PP", function()
   vim.cmd("w")
   local file = vim.fn.expand("%")
-  vim.cmd("!" .. "manim -pqh " .. file)
-end, { desc = "Save and run manim on current file" })
-vim.keymap.set("n", "<leader>Pp", function()
-  vim.cmd("w")
-  local file = vim.fn.expand("%")
-  vim.cmd("!" .. "manim -pqh " .. file)
-end, { desc = "Save and run manim on current file" })
+  if not manim_term or not vim.api.nvim_buf_is_valid(manim_term) then
+    vim.cmd("botright split")
+    vim.cmd("resize 15")
+    vim.cmd("terminal")
+    manim_term = vim.api.nvim_get_current_buf()
+  end
+  vim.fn.chansend(vim.b.terminal_job_id, "manim -pqh " .. file .. "\n")
+  vim.cmd("wincmd p")
+end)
 vim.api.nvim_create_autocmd("BufReadPost", {
   callback = function()
     if vim.bo.filetype ~= 'commit' then

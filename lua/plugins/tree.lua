@@ -12,11 +12,11 @@ return {
       sort_by = "name",
       actions = {
         open_file = {
-          quit_on_open = true,
+          quit_on_open = false,
         },
       },
       view = {
-        width = 16,
+        width = 18,
         side = "left",
         adaptive_size = false,
       },
