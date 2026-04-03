@@ -1,0 +1,3 @@
+This is my personal NeoVim configurations, shaped over time to match how I work. It is intentionally minimal, but not simplistic. Everything here exists because it proved useful, and anything unnecessary was removed.
+
+I like a quiet interface and a fast startup, so the setup relies on lazy loading and a modular structure. That way, I can tweak or replace parts without breaking everything else. It’s not designed to work for everyone, and it’s definitely not beginner-focused. It’s simply a workspace that reflects my habits, refined gradually through small, consistent changes rather than big rewrites.
