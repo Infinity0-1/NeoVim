@@ -1,6 +1,6 @@
 vim.opt.shell = "/usr/bin/zsh"
 vim.opt.shellcmdflag = "-ic"
-vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard = 'unnamedplus'
 vim.opt.cmdheight = 0
 
 vim.opt.linebreak = true
@@ -45,6 +45,8 @@ vim.cmd [[
 
 vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", "Y", '"+y')
+vim.keymap.set("n", "<C-T>", ":terminal")
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true })
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })

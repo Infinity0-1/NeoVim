@@ -5,6 +5,7 @@ return {
   keys = {
     { "<leader>e", ":NvimTreeToggle<CR>", desc = "Toggle File Explorer" },
   },
+
   config = function()
     require("nvim-tree").setup({
       disable_netrw = true,
@@ -15,11 +16,13 @@ return {
           quit_on_open = false,
         },
       },
+
       view = {
         width = 18,
         side = "left",
         adaptive_size = false,
       },
+
       renderer = {
         icons = {
           show = {
@@ -30,9 +33,11 @@ return {
           },
         },
       },
+
       filters = {
         dotfiles = true,
       },
+
       git = {
         enable = true,
         ignore = false,

@@ -26,11 +26,13 @@ return {
           strings = 'NONE',
           types = 'NONE',
         },
+
         inverse = {
           match_paren = false,
           visual = false,
           search = false,
         },
+
         darken = {
           floats = true,
           sidebars = {
@@ -38,12 +40,15 @@ return {
             list = {},
           },
         },
+
         modules = {},
       },
+
       palettes = {},
       specs = {},
       groups = {},
     })
+
     vim.cmd('colorscheme github_dark')
   end,
 }

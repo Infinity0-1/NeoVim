@@ -15,6 +15,7 @@ return {
          Comment = { fg = "#888888", italic = true },
          String = { fg = "#00ffcc" },
      },
+
      overrides = function(colors)
          return {
              ["@function"] = { fg = colors.cyan, italic = true },
@@ -28,6 +29,7 @@ return {
          dark = { magenta = "#f0b000", fg = "#ffffff", cyan = "#00ffff" },
          light = { red = "#ff5c57", cyan = "#5ef1ff" },
      },
+
      extensions = { telescope = false, notify = true, mini = true },
   })
   end,

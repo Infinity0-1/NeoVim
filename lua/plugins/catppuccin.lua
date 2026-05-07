@@ -23,6 +23,7 @@ return {
         types = {},
         operators = {},
       },
+
       lsp_styles = {
         virtual_text = {
           errors = { "italic" },
@@ -31,6 +32,7 @@ return {
           information = { "italic" },
           ok = { "italic" },
         },
+
         underlines = {
           errors = { "underline" },
           hints = { "underline" },
@@ -38,15 +40,16 @@ return {
           information = { "underline" },
           ok = { "underline" },
         },
-        inlay_hints = {
-          background = true,
-        },
+
+        inlay_hints = { background = true, },
       },
+
       color_overrides = {
         all = {
           text = "#ffffff",
         },
       },
+
       custom_highlights = {},
       default_integrations = true,
       auto_integrations = true,

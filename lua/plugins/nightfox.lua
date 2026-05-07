@@ -20,6 +20,7 @@ return {
             tritan = 0,
           },
         },
+
         styles = {
           comments = "NONE",
           conditionals = "NONE",
@@ -32,11 +33,13 @@ return {
           types = "NONE",
           variables = "NONE",
         },
+
         inverse = {
           match_paren = false,
           visual = false,
           search = false,
         },
+
         modules = {
           telescope = true,
           treesitter = true,
@@ -44,6 +47,7 @@ return {
           gitsigns = true,
         },
       },
+
       palettes = {},
       specs = {},
       groups = {

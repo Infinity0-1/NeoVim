@@ -1,3 +1,6 @@
+-- For Clipboard = System's
+-- vim.opt.clipboard = "unnamedplus"
+
 -- For manim:
 
 -- vim.keymap.set("n", "<leader>Pp", function()

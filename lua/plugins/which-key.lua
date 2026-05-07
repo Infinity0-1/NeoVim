@@ -29,6 +29,7 @@ return {
       return mapping.desc and mapping.desc ~= ""
     end,
   },
+
   config = function(_, opts)
     local wk = require("which-key")
     wk.setup(opts)

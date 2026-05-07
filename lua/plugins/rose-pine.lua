@@ -13,11 +13,13 @@ return {
         legacy_highlights = true,
         migrations = true,
       },
+
       styles = {
         bold = true,
         italic = true,
         transparency = false,
       },
+
       groups = {
         border = "muted",
         link = "iris",
@@ -45,11 +47,13 @@ return {
         h5 = "pine",
         h6 = "foam",
       },
+
       palette = {},
       highlight_groups = {},
       before_highlight = function(group, highlight, palette)
       end,
     })
+
     vim.cmd("colorscheme rose-pine")
   end,
 }

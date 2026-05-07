@@ -11,6 +11,7 @@ return {
       end,
     },
   },
+
   config = function()
     local telescope = require("telescope")
     telescope.setup({
@@ -21,10 +22,12 @@ return {
           prompt_position = "bottom",
           preview_width = 0.6,
         },
+
         preview = {
           treesitter = true,
         },
       },
+
       pickers = {
         find_files = {
           find_command = (vim.fn.executable("fd") == 1)
@@ -32,6 +35,7 @@ return {
               or nil,
         },
       },
+
       extensions = {
         fzf = {
           fuzzy = true,
@@ -41,9 +45,9 @@ return {
         },
       },
     })
+
     pcall(telescope.load_extension, "fzf")
     local builtin = require("telescope.builtin")
-
     vim.keymap.set("n", "fF", function()
       builtin.find_files({
         hidden = true,
@@ -51,6 +55,7 @@ return {
             and { "fd", "--type", "f", "-u", "--strip-cwd-prefix" }
             or nil,
       })
+
     end, { desc = "Find hidden files" })
 
     vim.keymap.set("n", "ff", builtin.find_files, { desc = "Find files" })
