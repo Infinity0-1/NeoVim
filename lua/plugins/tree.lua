@@ -2,9 +2,7 @@ return {
   "nvim-tree/nvim-tree.lua",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   cmd = "NvimTreeToggle",
-  keys = {
-    { "<leader>e", ":NvimTreeToggle<CR>", desc = "Toggle File Explorer" },
-  },
+  keys = { { "<leader>e", ":NvimTreeToggle<CR>", desc = "Toggle File Explorer" }, },
 
   config = function()
     require("nvim-tree").setup({
@@ -18,7 +16,7 @@ return {
       },
 
       view = {
-        width = 18,
+        width = 24,
         side = "left",
         adaptive_size = false,
       },
@@ -40,7 +38,7 @@ return {
 
       git = {
         enable = true,
-        ignore = false,
+        ignore = true,
       },
     })
   end,

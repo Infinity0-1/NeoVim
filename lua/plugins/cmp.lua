@@ -25,14 +25,14 @@ return {
     window = {
       completion = {
         border = "rounded",
-        max_width = 30,
-        max_height = 15,
+        max_width = 35,
+        max_height = 18,
       },
 
       documentation = {
         border = "rounded",
-        max_width = 50,
-        max_height = 20,
+        max_width = 54,
+        max_height = 21,
       },
     },
 
@@ -50,6 +50,13 @@ return {
       { name = "buffer" },
     }),
   })
+
+  vim.api.nvim_set_hl(0, "Pmenu", { bg = "NONE" })
+  vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#777777" })
+  vim.api.nvim_set_hl(0, "PmenuSbar", { bg = "NONE" })
+  vim.api.nvim_set_hl(0, "PmenuThumb", { bg = "NONE" })
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+  vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
 
   cmp.setup.cmdline("/", {
     mapping = cmp.mapping.preset.cmdline(),

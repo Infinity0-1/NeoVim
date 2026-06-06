@@ -9,7 +9,8 @@ return {
   opts = {
     animation = true,
     auto_hide = true,
-    insert_at_end = true,
+    insert_at_end = false,
+    insert_at_start = false,
     clickable = true,
     focus_on_close = "previous",
     exclude_ft = { "qf", "netrw" },

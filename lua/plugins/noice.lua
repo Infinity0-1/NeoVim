@@ -19,8 +19,7 @@ return {
     require("noice").setup({
       cmdline = {
         enabled = true,
-        view = "cmdline",
-        -- view = "cmdline_popup",
+        view = "cmdline", -- view = "cmdline_popup",
       },
 
       lsp = {
@@ -49,7 +48,7 @@ return {
 
       presets = {
         bottom_search = true,
-        command_palette = true,
+        command_palette = false,
         long_message_to_split = true,
         inc_rename = true,
         lsp_doc_border = true,
@@ -61,6 +60,7 @@ return {
 
       views = {
         cmdline_popup = {
+          enabled = false,
           position = {
             row = "50%",
             col = "50%",

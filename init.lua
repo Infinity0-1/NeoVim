@@ -1,5 +1,10 @@
+
 require ("lazy.lazy")
 
-require ("my configs")
+require ("stable.base")
 
-require ("my configs.exp")
+require ("stable.binds")
+
+require ("stable.functions")
+
+require ("stable.specials")

@@ -4,10 +4,9 @@ return {
   config = function()
     require('nvim-treesitter').setup({
       install_dir = vim.fn.stdpath('data') .. '/site',
-      ensure_installed = { "c", "cpp", "lua", "python", "bash", "json", "markdown" },
       highlight = {
         enable = true,
-        additional_vim_regex_highlighting = true,
+        additional_vim_regex_highlighting = false,
       },
 
       indent = { enable = true },

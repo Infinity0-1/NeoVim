@@ -19,8 +19,8 @@ return {
         sorting_strategy = "ascending",
         layout_strategy = "horizontal",
         layout_config = {
-          prompt_position = "bottom",
-          preview_width = 0.6,
+          prompt_position = "top",
+          preview_width = 0.65,
         },
 
         preview = {
@@ -59,9 +59,10 @@ return {
     end, { desc = "Find hidden files" })
 
     vim.keymap.set("n", "ff", builtin.find_files, { desc = "Find files" })
+    vim.keymap.set("n", "<leader>ff", ":lua require('fzf-lua').files()<CR>",  { desc = "Find files through fzf" })
     vim.keymap.set("n", "fg", builtin.live_grep,  { desc = "Live grep" })
     vim.keymap.set("n", "fb", builtin.buffers,    { desc = "Buffers" })
     vim.keymap.set("n", "<leader>fh", builtin.help_tags,  { desc = "Help tags" })
-    vim.keymap.set("n", "<leader>fr", builtin.resume,     { desc = "Resume last search" })
+    vim.keymap.set("n", "fr", builtin.resume,     { desc = "Resume last search" })
   end,
 }
