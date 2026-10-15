@@ -58,7 +58,7 @@ require('vim._core.ui2').enable({
     pager = { height = 90, },
 
     msg = {
-      height = 20,
+      height = 100,
       timeout = 1000,
     },
   },
