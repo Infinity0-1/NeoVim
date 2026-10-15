@@ -22,6 +22,8 @@ require("lazy").setup({
   },
 })
 
+vim.cmd('colorscheme default')
+
 vim.cmd[[highlight Normal guibg=none ctermbg=none]]
 
 -- vim.api.nvim_set_hl(0, "SpellBad",         { undercurl = true, sp = "#cc8080", bg = "NONE", })
