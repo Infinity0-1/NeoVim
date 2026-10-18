@@ -1,10 +1,9 @@
 return {
   "folke/which-key.nvim",
-  lazy = true,
   event = "VeryLazy",
   opts = {
     preset = "modern",
-    delay = 600,
+    delay = 10000,
     win = {
       border = "rounded",
       padding = { 1, 5 },

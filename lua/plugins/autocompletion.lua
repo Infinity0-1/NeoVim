@@ -1,6 +1,6 @@
 return {
   "hrsh7th/nvim-cmp",
-  event = { "InsertEnter", "CmdlineEnter" },
+  event = { "InsertEnter" },
   dependencies = {
     "rafamadriz/friendly-snippets",
     "saadparwaiz1/cmp_luasnip",
@@ -23,26 +23,28 @@ return {
       end,
     },
 
+    performance = { max_view_entries = 10 },
+
     window = {
       completion = {
         border = "rounded",
-        max_width = 50,
-        max_height = 24,
+        max_width = 9,
+        max_height = 9,
       },
 
       documentation = {
         border = "rounded",
-        max_width = 91,
-        max_height = 51,
+        max_width = 50,
+        max_height = 10,
       },
     },
 
-    performance = { max_view_entries = 24 },
-
     mapping = cmp.mapping.preset.insert({
-      ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-      ["<C-b>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-      ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+      [ "<Tab>" ] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+      ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+      [ "<C-n>" ] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+      [ "<C-b>" ] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+
       ["<C-Space>"] = cmp.mapping(function()
         if cmp.visible() then cmp.close() else cmp.complete() end
       end, { "i", "c" }),
@@ -52,43 +54,6 @@ return {
       { name = "nvim_lsp" },
       { name = "luasnip" },
       { name = "path" },
-    }),
-  })
-
-  cmp.setup.cmdline("/", {
-    completion = { autocomplete = false },
-    mapping = cmp.mapping.preset.cmdline({
-      ["<C-Space>"] = {
-        c = function()
-          if cmp.visible() then cmp.close() else cmp.complete() end
-        end,
-      },
-    }),
-
-    sources = {
-      { name = "buffer" },
-    },
-  })
-
-  cmp.setup.cmdline(":", {
-    completion = { autocomplete = false },
-    mapping = cmp.mapping.preset.cmdline({
-      ["<C-Space>"] = {
-        c = function()
-          if cmp.visible() then cmp.close() else cmp.complete() end
-        end,
-      },
-    }),
-
-    sources = cmp.config.sources({
-      { name = "path" },
-    }, {
-      {
-        name = "cmdline",
-        option = {
-          ignore_cmds = { "Man", "!" },
-        },
-      },
     }),
   })
   end,

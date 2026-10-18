@@ -29,14 +29,14 @@ return {
         layout_strategy = "horizontal",
         layout_config = {
           prompt_position = "bottom",
-          preview_width = 0.5,
+          preview_width = 0.46,
           preview_cutoff = 1,
-          width = 0.95,
+          width = 0.9,
           height = 0.9,
         },
 
         preview = {
-          treesitter = false,
+          treesitter = true,
         },
       },
 
@@ -51,8 +51,8 @@ return {
       extensions = {
         fzf = {
           fuzzy = true,
-          override_generic_sorter = false,
-          override_file_sorter = false,
+          override_generic_sorter = true,
+          override_file_sorter = true,
           case_mode = "smart_case",
         },
       },

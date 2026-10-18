@@ -1,4 +1,5 @@
 vim.keymap.set("n", "<C-Q>", ":%bdelete! | restart<CR>", { silent = true })
+vim.keymap.set("n", "<C-t>", ":terminal<CR>i", { silent = true })
 vim.keymap.set("n", "Q", ":bdelete!<CR>", { silent = true })
 
 vim.keymap.set("n", "<C-Tab>", ":bnext<CR>", { silent = true })
@@ -14,7 +15,6 @@ vim.keymap.set("v", ">", ">gv", { silent = true })
 vim.keymap.set("v", "<", "<gv", { silent = true })
 vim.keymap.set("v", "Y", "\"+y", { silent = true })
 
-vim.keymap.set("n", "<C-p>", "\"+p", { silent = true })
 vim.keymap.set("v", "<C-p>", "\"+p", { silent = true })
 vim.keymap.set("v", "<leader>p", "\"_dp", { silent = true })
 vim.keymap.set("v", "<leader>P", "\"_d\"+p", { silent = true })
@@ -23,6 +23,8 @@ vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
+
+vim.keymap.set("n", "gd", function() require("telescope.builtin").lsp_definitions() end, { silent = true })
 
 -- vim.keymap.set("n", "h", "hzz", { silent = true })
 -- vim.keymap.set("n", "j", "jzz", { silent = true })

@@ -6,18 +6,28 @@ return {
   config = function()
     local devicons = require("nvim-web-devicons")
     local date = { "datetime", style = "%H:%M" }
-
     local filename_component = {
       function()
-        local name = vim.fn.expand("%")
-        local icon, icon_color = devicons.get_icon_color(vim.fn.expand("%:t"), vim.bo.filetype, { default = true })
+        if vim.bo.buftype == "terminal" then
+          return "Terminal"
+        end
+        if vim.bo.filetype == "oil" then
+          return "Oil Navigator"
+        end
+        local name = vim.fn.expand("%:~")
+        local icon, icon_color = devicons.get_icon_color(
+          vim.fn.expand("%:t"),
+          vim.bo.filetype,
+          { default = true }
+        )
+
         if icon then
-          return " " .. icon .. " " .. name
+          return icon .. " " .. name
         else
           return name
         end
       end,
-      color = { fg = "#f5e0dc" },
+      color = { fg = "#efefef" },
       padding = { left = 1, right = 1 },
     }
 
@@ -50,30 +60,29 @@ return {
     require("lualine").setup({
       options = {
         theme = "auto",
-        -- theme = "nightfox",
         globalstatus = true,
         icons_enabled = true,
         component_separators = { left = '', right = ''},
         section_separators = { left = '', right = ''},
         refresh = {
-              statusline = 1000,
-              tabline = 1000,
-              winbar = 1000,
-              refresh_time = 5,
-              events = {
-                'WinEnter',
-                'BufEnter',
-                'BufWritePost',
-                'SessionLoadPost',
-                'FileChangedShellPost',
-                'VimResized',
-                'Filetype',
-                'CursorMoved',
-                'CursorMovedI',
-                'ModeChanged',
-                'RecordingEnter',
-                'RecordingLeave',
-              },
+          statusline = 1000,
+          tabline = 1000,
+          winbar = 1000,
+          refresh_time = 5,
+          events = {
+            'WinEnter',
+            'BufEnter',
+            'BufWritePost',
+            'SessionLoadPost',
+            'FileChangedShellPost',
+            'VimResized',
+            'Filetype',
+            'CursorMoved',
+            'CursorMovedI',
+            'ModeChanged',
+            'RecordingEnter',
+            'RecordingLeave',
+          },
         },
       },
 
