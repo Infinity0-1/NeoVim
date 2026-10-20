@@ -1,60 +1,109 @@
 return {
   "hrsh7th/nvim-cmp",
-  event = { "InsertEnter" },
+  enabled = true,
+  event = "InsertEnter",
   dependencies = {
-    "rafamadriz/friendly-snippets",
-    "saadparwaiz1/cmp_luasnip",
     "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
-    "L3MON4D3/LuaSnip",
+    "hrsh7th/cmp-cmdline",
+    "saadparwaiz1/cmp_luasnip",
+    {
+      "L3MON4D3/LuaSnip",
+      version = "v2.*",
+      build = "make install_jsregexp",
+      dependencies = { "rafamadriz/friendly-snippets" },
+    },
+
+    "onsails/lspkind.nvim",
   },
-  
+
   config = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")
+    local lspkind = require("lspkind")
+
     require("luasnip.loaders.from_vscode").lazy_load()
 
-  cmp.setup({
-    snippet = {
-      expand = function(args)
-        luasnip.lsp_expand(args.body)
-      end,
-    },
+    local has_words_before = function()
+      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+      return col ~= 0
+        and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+    end
 
-    performance = { max_view_entries = 10 },
-
-    window = {
-      completion = {
-        border = "rounded",
-        max_width = 9,
-        max_height = 9,
+    cmp.setup({
+      snippet = {
+        expand = function(args)
+          luasnip.lsp_expand(args.body)
+        end,
       },
 
-      documentation = {
-        border = "rounded",
-        max_width = 50,
-        max_height = 10,
+      performance = {
+        max_view_entries = 4,
       },
-    },
 
-    mapping = cmp.mapping.preset.insert({
-      [ "<Tab>" ] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-      ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-      [ "<C-n>" ] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-      [ "<C-b>" ] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered({
+          border = { "│", "─", "╮", "│", "╯", "─", "│", "│" },
+        }),
+      },
 
-      ["<C-Space>"] = cmp.mapping(function()
-        if cmp.visible() then cmp.close() else cmp.complete() end
-      end, { "i", "c" }),
-    }),
+      mapping = cmp.mapping.preset.insert({
+        ["<C-n>"] = cmp.mapping.select_next_item(),
+        ["<C-b>"] = cmp.mapping.select_prev_item(),
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.confirm({ select = true })
+          elseif has_words_before() then
+            cmp.complete()
+            vim.defer_fn(function()
+              if cmp.visible() then
+                cmp.confirm({ select = true })
+              end
+            end, 50)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<C-Space>"] = cmp.mapping(function()
+          if cmp.visible() then
+            cmp.close()
+          else
+            cmp.complete()
+          end
+        end, { "i", "c" }),
+      }),
 
-    sources = cmp.config.sources({
-      { name = "nvim_lsp" },
-      { name = "luasnip" },
-      { name = "path" },
-    }),
-  })
+      sources = cmp.config.sources({
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+      }, {
+        { name = "path" },
+        { name = "buffer", keyword_length = 3 },
+      }),
+
+      formatting = {
+        format = lspkind.cmp_format({
+          mode = "symbol_text",
+          maxwidth = 50,
+          ellipsis_char = "...",
+          menu = {
+            nvim_lsp = "[LSP]",
+            luasnip = "[Snip]",
+            buffer = "[Buf]",
+            path = "[Path]",
+          },
+        }),
+      },
+
+      experimental = { ghost_text = true },
+    })
+
+    cmp.setup.cmdline({ "/", "?" }, {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = { { name = "buffer" } },
+    })
+
   end,
 }

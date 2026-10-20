@@ -3,7 +3,7 @@ vim.g.mapleader = " "
 
 vim.opt.shell = "/usr/bin/zsh"
 vim.opt.shellcmdflag = "-ic"
-vim.opt.cmdwinheight = 15
+vim.opt.cmdwinheight = 20
 vim.opt.cmdheight = 1
 
 vim.api.nvim_create_autocmd("BufReadPost", {
@@ -25,7 +25,7 @@ vim.opt.undodir = undo_dir
 vim.opt.undofile = true
 
 vim.opt.cursorline = true
-vim.opt.guicursor = "n-v-c-i:block"
+vim.opt.guicursor = "n-v-c:block,i:block-blinkoff1-blinkon1"
 vim.opt.signcolumn = "yes:1"
 
 vim.opt.number = true
@@ -53,13 +53,6 @@ require('vim._core.ui2').enable({
   enable = true,
   msg = {
     targets = 'cmd',
-    cmd = { height = 90, },
-    dialog = { height = 90, },
-    pager = { height = 90, },
-
-    msg = {
-      height = 100,
-      timeout = 1000,
-    },
+    msg = { height = 100, timeout = 1000 },
   },
 })

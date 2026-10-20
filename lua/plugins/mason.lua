@@ -1,6 +1,7 @@
 return {
   {
     "mason-org/mason.nvim",
+    lazy = true,
     opts = {
       ui = {
         icons = {
@@ -29,6 +30,7 @@ return {
 
   {
     "mason-org/mason-lspconfig.nvim",
+    lazy = false,
     dependencies = {
       "mason-org/mason.nvim",
       "neovim/nvim-lspconfig",

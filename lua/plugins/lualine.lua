@@ -16,9 +16,9 @@ return {
         end
         local name = vim.fn.expand("%:~")
         local icon, icon_color = devicons.get_icon_color(
-          vim.fn.expand("%:t"),
+          vim.fn.expand("%"),
           vim.bo.filetype,
-          { default = true }
+          { default = false }
         )
 
         if icon then
@@ -60,7 +60,7 @@ return {
     require("lualine").setup({
       options = {
         theme = "auto",
-        globalstatus = true,
+        globalstatus = false,
         icons_enabled = true,
         component_separators = { left = '', right = ''},
         section_separators = { left = '', right = ''},
@@ -87,22 +87,22 @@ return {
       },
 
       sections = {
-        lualine_a = { "mode", macro_recording },
-        lualine_b = { "branch", "progress" },
+        lualine_a = { "progress" },
+        lualine_b = { "branch", macro_recording },
         lualine_c = { filename_component },
         lualine_x = { "diff" },
         lualine_y = { battery_component },
         lualine_z = { date },
       },
 
-      inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_x = { filename_component },
-        lualine_c = {},
-        lualine_y = {},
-        lualine_z = {},
-      },
+      -- inactive_sections = {
+      --   lualine_a = { "mode" },
+      --   lualine_b = {},
+      --   lualine_x = {},
+      --   lualine_c = {},
+      --   lualine_y = {},
+      --   lualine_z = {},
+      -- },
     })
   end,
 }

@@ -22,9 +22,13 @@ require("lazy").setup({
   },
 })
 
-vim.cmd('colorscheme catppuccin')
+vim.cmd('colorscheme nightfox')
 vim.cmd('set background=dark')
+vim.cmd("syntax off")
 vim.cmd[[highlight Normal guibg=none ctermbg=none]]
+
+vim.o.winborder = "single"
+vim.o.completeopt = "menu,menuone,popup"
 
 vim.api.nvim_set_hl(0, "DiagnosticError",  { fg = "NONE", bg = "NONE", })
 vim.api.nvim_set_hl(0, "DiagnosticWarn",   { fg = "NONE", bg = "NONE", })
@@ -35,10 +39,11 @@ vim.api.nvim_set_hl(0, "NotifyERRORTitle", { fg = "NONE", bg = "NONE" })
 vim.api.nvim_set_hl(0, "MsgArea",          { bg = "NONE" })
 vim.api.nvim_set_hl(0, "MsgSeparator",     { bg = "NONE" })
 
--- vim.api.nvim_set_hl(0, "Pmenu",            { bg = "NONE" })
--- vim.api.nvim_set_hl(0, "PmenuSel",         { bg = "#777777" })
--- vim.api.nvim_set_hl(0, "PmenuSbar",        { bg = "NONE" })
--- vim.api.nvim_set_hl(0, "PmenuThumb",       { bg = "NONE" })
--- vim.api.nvim_set_hl(0, "NormalFloat",      { bg = "NONE" })
--- vim.api.nvim_set_hl(0, "FloatBorder",      { bg = "NONE" })
--- vim.api.nvim_set_hl(0, "SpellBad",         { undercurl = true, sp = "#cc8080", bg = "NONE", })
+vim.api.nvim_set_hl(0, "Pmenu",       { bg = "#1c1c1c" })
+vim.api.nvim_set_hl(0, "PmenuSel",    { bg = "#3a3a3a", bold = true })
+vim.api.nvim_set_hl(0, "PmenuSbar",   { bg = "#1c1c1c" })
+vim.api.nvim_set_hl(0, "PmenuThumb",  { bg = "#c0c0c0" })
+vim.api.nvim_set_hl(0, "PmenuBorder", { fg = "#c0c0c0", bg = "#1c1c1c" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1c1c1c" })
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#c0c0c0", bg = "#1c1c1c" })
+vim.api.nvim_set_hl(0, "SpellBad",    { undercurl = true, sp = "#cc8080", bg = "NONE" })
