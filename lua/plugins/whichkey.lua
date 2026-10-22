@@ -3,7 +3,7 @@ return {
   event = "VeryLazy",
   opts = {
     preset = "modern",
-    delay = 10000,
+    delay = 5000,
     win = {
       border = "rounded",
       padding = { 1, 5 },

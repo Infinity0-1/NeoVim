@@ -3,7 +3,6 @@ vim.g.mapleader = " "
 
 vim.opt.shell = "/usr/bin/zsh"
 vim.opt.shellcmdflag = "-ic"
-vim.opt.cmdwinheight = 20
 vim.opt.cmdheight = 1
 
 vim.api.nvim_create_autocmd("BufReadPost", {
@@ -20,6 +19,13 @@ local undo_dir = vim.fn.stdpath('cache') .. '/undo'
 if vim.fn.isdirectory(undo_dir) == 0 then
   vim.fn.mkdir(undo_dir, 'p')
 end
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "CursorLine", { bg = "#232323" })
+    vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#d0d0d0", bold = true })
+  end,
+})
 
 vim.opt.undodir = undo_dir
 vim.opt.undofile = true

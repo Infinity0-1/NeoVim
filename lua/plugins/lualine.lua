@@ -5,7 +5,10 @@ return {
   dependencies = { "kyazdani42/nvim-web-devicons" },
   config = function()
     local devicons = require("nvim-web-devicons")
-    local date = { "datetime", style = "%H:%M" }
+    local date = { "datetime", style = "%H:%M", padding = { left = 1, right = 1 } }
+    local bg = "#232123"
+    local fg = "#ffffff"
+
     local filename_component = {
       function()
         if vim.bo.buftype == "terminal" then
@@ -41,7 +44,7 @@ return {
         cap:close()
         return capacity .. "%%"
       end,
-      color = { fg = "#ffffff" },
+      color = { fg = fg, bg = bg },
       padding = { left = 1, right = 1 },
     }
 
@@ -57,13 +60,30 @@ return {
       padding = { left = 1, right = 1 },
     }
 
+    local function mode(accent)
+      return {
+        a = { fg = accent, bg = bg, gui = "bold" },
+        b = { fg = fg, bg = bg },
+        c = { fg = fg, bg = bg },
+      }
+    end
+
+    local theme = {
+      normal = mode("#a8a8a8"),
+      insert = mode("#8fa88f"),
+      visual = mode("#a898b8"),
+      replace = mode("#b88f8f"),
+      command = mode("#b8a88f"),
+      inactive = mode("#444444"),
+    }
+
     require("lualine").setup({
       options = {
-        theme = "auto",
+        theme = theme,
         globalstatus = false,
         icons_enabled = true,
-        component_separators = { left = '', right = ''},
-        section_separators = { left = '', right = ''},
+        component_separators = { left = '', right = ''},
+        section_separators = { left = '', right = ''},
         refresh = {
           statusline = 1000,
           tabline = 1000,
@@ -87,22 +107,22 @@ return {
       },
 
       sections = {
-        lualine_a = { "progress" },
-        lualine_b = { "branch", macro_recording },
-        lualine_c = { filename_component },
-        lualine_x = { "diff" },
-        lualine_y = { battery_component },
+        lualine_a = { "progress", "branch", macro_recording },
+        lualine_b = { filename_component },
+        lualine_c = { },
+        lualine_x = { },
+        lualine_y = { "diff", battery_component },
         lualine_z = { date },
       },
 
-      -- inactive_sections = {
-      --   lualine_a = { "mode" },
-      --   lualine_b = {},
-      --   lualine_x = {},
-      --   lualine_c = {},
-      --   lualine_y = {},
-      --   lualine_z = {},
-      -- },
+      inactive_sections = {
+        lualine_a = { "branch" },
+        lualine_b = { filename_component },
+        lualine_c = { },
+        lualine_x = { },
+        lualine_y = { },
+        lualine_z = { },
+      },
     })
   end,
 }

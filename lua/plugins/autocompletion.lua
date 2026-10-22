@@ -38,8 +38,8 @@ return {
         end,
       },
 
-      performance = {
-        max_view_entries = 4,
+      completion = {
+        autocomplete = false,
       },
 
       window = {
@@ -75,13 +75,13 @@ return {
         end, { "i", "c" }),
       }),
 
-      sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-      }, {
-        { name = "path" },
-        { name = "buffer", keyword_length = 3 },
-      }),
+    sources = cmp.config.sources({
+      { name = "path", priority = 1000 },
+      { name = "nvim_lsp" },
+      { name = "luasnip" },
+    }, {
+      { name = "buffer", keyword_length = 3 },
+    }),
 
       formatting = {
         format = lspkind.cmp_format({
@@ -104,6 +104,8 @@ return {
       mapping = cmp.mapping.preset.cmdline(),
       sources = { { name = "buffer" } },
     })
+
+    vim.opt.pumheight = 3
 
   end,
 }
