@@ -70,11 +70,11 @@ return {
 
     local theme = {
       normal = mode("#a8a8a8"),
-      insert = mode("#8fa88f"),
-      visual = mode("#a898b8"),
-      replace = mode("#b88f8f"),
-      command = mode("#b8a88f"),
-      inactive = mode("#444444"),
+      insert = mode("#a8a8a8"),
+      visual = mode("#a8a8a8"),
+      replace = mode("#a8a8a8"),
+      command = mode("#a8a8a8"),
+      inactive = mode("#a8a8a8"),
     }
 
     require("lualine").setup({
