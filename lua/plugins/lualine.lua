@@ -6,7 +6,7 @@ return {
   config = function()
     local devicons = require("nvim-web-devicons")
     local date = { "datetime", style = "%H:%M", padding = { left = 1, right = 1 } }
-    local bg = "#232123"
+    local bg = "#232323"
     local fg = "#ffffff"
 
     local filename_component = {
@@ -85,10 +85,10 @@ return {
         component_separators = { left = '', right = ''},
         section_separators = { left = '', right = ''},
         refresh = {
-          statusline = 1000,
-          tabline = 1000,
-          winbar = 1000,
-          refresh_time = 5,
+          statusline = 100,
+          tabline = 100,
+          winbar = 100,
+          refresh_time = 1,
           events = {
             'WinEnter',
             'BufEnter',
@@ -121,8 +121,9 @@ return {
         lualine_c = { },
         lualine_x = { },
         lualine_y = { },
-        lualine_z = { },
+        lualine_z = { battery_component },
       },
     })
+
   end,
 }

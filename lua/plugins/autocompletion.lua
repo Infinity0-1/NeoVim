@@ -38,9 +38,9 @@ return {
         end,
       },
 
-      completion = {
-        autocomplete = false,
-      },
+      -- completion = {
+      --   autocomplete = false,
+      -- },
 
       window = {
         completion = cmp.config.window.bordered(),
@@ -66,22 +66,23 @@ return {
             fallback()
           end
         end, { "i", "s" }),
+
         ["<C-Space>"] = cmp.mapping(function()
           if cmp.visible() then
             cmp.close()
           else
             cmp.complete()
           end
-        end, { "i", "c" }),
+        end, { "i" }),
       }),
 
-    sources = cmp.config.sources({
-      { name = "path", priority = 1000 },
-      { name = "nvim_lsp" },
-      { name = "luasnip" },
-    }, {
-      { name = "buffer", keyword_length = 3 },
-    }),
+      sources = cmp.config.sources({
+        { name = "path", priority = 1000 },
+        { name = "nvim_lsp", priority = 900 },
+        { name = "luasnip" },
+      }, {
+        { name = "buffer", keyword_length = 3 },
+      }),
 
       formatting = {
         format = lspkind.cmp_format({
@@ -105,7 +106,7 @@ return {
       sources = { { name = "buffer" } },
     })
 
-    vim.opt.pumheight = 3
+    vim.opt.pumheight = 4
 
   end,
 }

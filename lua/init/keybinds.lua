@@ -2,7 +2,7 @@ vim.keymap.set("n", "<C-Q>", ":%bdelete! | restart<CR>", { silent = true })
 vim.keymap.set("n", "Q", ":bdelete!<CR>", { silent = true })
 
 vim.keymap.set("t", "<C-Tab>", [[<C-\><C-n><C-Tab>]], { silent = true, remap = true })
-vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>:]], { silent = false })
+vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>:]], { silent = true })
 vim.keymap.set("n", "<C-t>", ":terminal<CR>i", { silent = true })
 
 vim.keymap.set("n", "<C-Tab>", ":bnext<CR>", { silent = true })

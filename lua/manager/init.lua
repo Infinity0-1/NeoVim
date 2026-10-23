@@ -22,13 +22,10 @@ require("lazy").setup({
   },
 })
 
-vim.cmd('colorscheme nightfox')
-vim.cmd('set background=dark')
-vim.cmd("syntax off")
 vim.cmd[[highlight Normal guibg=none ctermbg=none]]
 
-vim.o.winborder = "single"
 vim.o.completeopt = "menu,menuone,popup"
+vim.o.winborder = "single"
 
 vim.api.nvim_set_hl(0, "DiagnosticError",  { fg = "NONE", bg = "NONE", })
 vim.api.nvim_set_hl(0, "DiagnosticWarn",   { fg = "NONE", bg = "NONE", })

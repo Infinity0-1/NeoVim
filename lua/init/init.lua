@@ -22,7 +22,7 @@ end
 
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()
-    vim.api.nvim_set_hl(0, "CursorLine", { bg = "#232323" })
+    vim.api.nvim_set_hl(0, "CursorLine", { bg = "#282828" })
     vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#d0d0d0", bold = true })
   end,
 })
@@ -35,7 +35,7 @@ vim.opt.guicursor = "n-v-c:block,i:block-blinkoff1-blinkon1"
 vim.opt.signcolumn = "yes:1"
 
 vim.opt.number = true
-vim.opt.numberwidth = 2
+vim.opt.numberwidth = 3
 vim.opt.relativenumber = true
 
 vim.opt.backup = false
@@ -43,9 +43,11 @@ vim.opt.swapfile = false
 vim.opt.writebackup = false
 
 vim.opt.wrap = false
+vim.opt.linebreak = true
+vim.opt.breakindent = false
 vim.opt.shiftwidth = 4
 
-vim.opt.smartindent = false
+vim.opt.smartindent = true
 vim.opt.expandtab = true
 vim.opt.softtabstop = 4
 vim.opt.tabstop = 4
