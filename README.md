@@ -1,0 +1,1 @@
+This is my personal neovim configurations, shaped over time to match how I work. It is intentionally minimal and without complex plugins, but it’s not simplistic. Everything that didn’t prove useful or unnecessary was removed. I like a quiet interface and a fast startup more than anything.
