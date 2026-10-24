@@ -5,7 +5,10 @@ return {
   dependencies = { "kyazdani42/nvim-web-devicons" },
   config = function()
     local devicons = require("nvim-web-devicons")
-    local date = { "datetime", style = "%H:%M" }
+    local date = { "datetime", style = "%H:%M", padding = { left = 1, right = 1 } }
+    local bg = "#131313"
+    local fg = "#bbbbbb"
+
     local filename_component = {
       function()
         if vim.bo.buftype == "terminal" then
@@ -27,7 +30,7 @@ return {
           return name
         end
       end,
-      color = { fg = "#ffffff" },
+      color = { fg = "#efefef" },
       padding = { left = 1, right = 1 },
     }
 
@@ -41,7 +44,7 @@ return {
         cap:close()
         return capacity .. "%%"
       end,
-      color = { fg = "#ffffff" },
+      color = { fg = fg, bg = bg },
       padding = { left = 1, right = 1 },
     }
 
@@ -57,51 +60,68 @@ return {
       padding = { left = 1, right = 1 },
     }
 
+    local function mode(accent)
+      return {
+        a = { fg = accent, bg = bg, gui = "bold" },
+        b = { fg = fg, bg = bg },
+        c = { fg = fg, bg = bg },
+      }
+    end
+
+    local theme = {
+      normal = mode("#a8a8a8"),
+      insert = mode("#a8a8a8"),
+      visual = mode("#a8a8a8"),
+      replace = mode("#a8a8a8"),
+      command = mode("#a8a8a8"),
+      inactive = mode("#a8a8a8"),
+    }
+
     require("lualine").setup({
       options = {
-        theme = "auto",
+        theme = theme,
         globalstatus = false,
         icons_enabled = true,
-        component_separators = { left = '', right = ''},
-        section_separators = { left = '', right = ''},
+        component_separators = { left = '|', right = '|'},
+        section_separators = { left = '|', right = '|'},
         refresh = {
-              statusline = 1000,
-              tabline = 1000,
-              winbar = 1000,
-              refresh_time = 1,
-              events = {
-                'WinEnter',
-                'BufEnter',
-                'BufWritePost',
-                'SessionLoadPost',
-                'FileChangedShellPost',
-                'VimResized',
-                'Filetype',
-                'CursorMoved',
-                'CursorMovedI',
-                'ModeChanged',
-                'RecordingEnter',
-                'RecordingLeave',
-              },
+          statusline = 1000,
+          tabline = 1000,
+          winbar = 1000,
+          refresh_time = 10,
+          events = {
+            'WinEnter',
+            'BufEnter',
+            'BufWritePost',
+            'SessionLoadPost',
+            'FileChangedShellPost',
+            'VimResized',
+            'Filetype',
+            'CursorMoved',
+            'CursorMovedI',
+            'ModeChanged',
+            'RecordingEnter',
+            'RecordingLeave',
+          },
         },
       },
 
       sections = {
-        lualine_a = { "progress", macro_recording },
-        lualine_b = { "branch", filename_component },
+        lualine_a = { "progress", "branch", macro_recording },
+        lualine_b = { filename_component },
         lualine_c = { },
-        lualine_x = { "diff" },
-        lualine_y = { battery_component },
+        lualine_x = { },
+        lualine_y = { "diff", battery_component },
         lualine_z = { date },
       },
 
       inactive_sections = {
-        lualine_a = { },
-        lualine_b = { "branch", filename_component },
+        lualine_a = { "diff" },
+        lualine_b = { filename_component },
         lualine_c = { },
-        lualine_x = { "diff" },
-        lualine_y = { battery_component },
-        lualine_z = { date },
+        lualine_x = { },
+        lualine_y = { },
+        lualine_z = { battery_component },
       },
     })
 

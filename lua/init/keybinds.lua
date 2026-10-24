@@ -30,8 +30,6 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
 vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
 
-vim.keymap.set("n", "gd", function() require("telescope.builtin").lsp_definitions() end, { silent = true })
-
 local function buf_dir()
   if vim.bo.filetype == "oil" then
     local ok, oil = pcall(require, "oil")
