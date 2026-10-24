@@ -1,12 +1,8 @@
 return {
   "neovim/nvim-lspconfig",
+  lazy = false,
   event = { "BufReadPre", "BufNewFile" },
-  dependencies = { "saghen/blink.cmp" },
   config = function()
-    vim.lsp.config("*", {
-      capabilities = require("blink.cmp").get_lsp_capabilities(),
-    })
-
     vim.lsp.config("lua_ls", {
       settings = {
         Lua = {
@@ -16,6 +12,7 @@ return {
             checkThirdParty = false,
             library = { vim.env.VIMRUNTIME },
           },
+
           telemetry = { enable = false },
         },
       },
@@ -29,6 +26,7 @@ return {
             args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
             onSave = false,
           },
+
           chktex = { onOpenAndSave = false },
         },
       },
@@ -43,12 +41,15 @@ return {
     vim.lsp.config("lua_ls", {
       root_dir = root_or_cwd({ ".luarc.json", ".luarc.jsonc", ".stylua.toml", "stylua.toml", ".git" }),
     })
+
     vim.lsp.config("texlab", {
       root_dir = root_or_cwd({ ".latexmkrc", ".texlabroot", "texlabroot", "Tectonic.toml", ".git" }),
     })
+
     vim.lsp.config("pyright", {
       root_dir = root_or_cwd({ "pyrightconfig.json", "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git" }),
     })
+
     vim.lsp.config("clangd", {
       cmd = {
         "clangd",
@@ -93,7 +94,6 @@ return {
 
     vim.api.nvim_create_autocmd("LspAttach", {
       callback = function(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
         local map = function(keys, fn, desc)
           vim.keymap.set("n", keys, fn, { buffer = args.buf, desc = "LSP: " .. desc })
         end
@@ -101,9 +101,6 @@ return {
         map("gD", vim.lsp.buf.declaration, "go to declaration")
         map("<leader>e", vim.diagnostic.open_float, "show diagnostic")
         map("<leader>f", function() vim.lsp.buf.format({ async = true }) end, "format")
-        if client and client:supports_method("textDocument/completion") then
-          vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-        end
       end,
     })
   end,

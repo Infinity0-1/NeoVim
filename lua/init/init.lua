@@ -47,7 +47,7 @@ vim.opt.linebreak = true
 vim.opt.breakindent = false
 vim.opt.shiftwidth = 4
 
-vim.opt.smartindent = true
+vim.opt.smartindent = false
 vim.opt.expandtab = true
 vim.opt.softtabstop = 4
 vim.opt.tabstop = 4
@@ -56,3 +56,11 @@ vim.opt.list = false
 vim.opt.spell = false
 vim.opt.listchars = {trail = '-',}
 vim.opt.spelllang = { "en_us" }
+ 
+require("vim._core.ui2").enable({
+  enable = true,
+  msg = {
+    target = "cmd",
+    msg = { timeout = 600 },
+  },
+})

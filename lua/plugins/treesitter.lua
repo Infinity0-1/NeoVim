@@ -1,5 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  lazy = false,
   branch = "main",
   build = ":TSUpdate",
   config = function()
@@ -22,5 +23,7 @@ return {
         end
       end,
     })
+
+    vim.lsp.document_color.enable(false)
   end,
 }

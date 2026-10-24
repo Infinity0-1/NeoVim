@@ -65,6 +65,7 @@ return
 
   {
     "preservim/vim-textobj-quote",
+    event = "VeryLazy",
     dependencies = { "kana/vim-textobj-user" },
     ft = { "markdown", "text", "latex" },
     config = function()
