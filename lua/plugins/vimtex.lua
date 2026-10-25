@@ -18,9 +18,9 @@ return
         },
       }
 
-      vim.keymap.set("n", "FF", ":w | LspTexlabBuild<CR>", { silent = true }, { desc = "Compiling" })
-      vim.keymap.set("n", "FK", ":LspTexlabCleanArtifacts<CR>", { silent = true }, { desc = "Cleaning files" })
-      vim.keymap.set("n", "<leader>t", ":VimtexTocOpen<CR>", { silent = true }, { desc = "Talbe of Content" })
+      -- vim.keymap.set("n", "FF", ":w | LspTexlabBuild<CR>", { silent = true }, { desc = "Compiling" })
+      -- vim.keymap.set("n", "FK", ":LspTexlabCleanArtifacts<CR>", { silent = true }, { desc = "Cleaning files" })
+      vim.keymap.set("n", "<leader>T", ":VimtexTocOpen<CR>", { silent = true }, { desc = "Talbe of Content" })
       vim.keymap.set("n", "<leader>v", ":VimtexView<CR>", { silent = true }, { desc = "Viewing PDF" })
 
       vim.g.vimtex_view_method = "zathura"

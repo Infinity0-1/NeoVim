@@ -22,7 +22,7 @@ require("lazy").setup({
   },
 })
 
--- vim.cmd[[highlight Normal guibg=none ctermbg=none]]
+vim.cmd[[highlight Normal guibg=none ctermbg=none]]
 
 vim.o.completeopt = "menu,menuone,popup"
 vim.o.winborder = "single"

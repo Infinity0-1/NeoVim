@@ -17,12 +17,14 @@ return {
     },
 
     config = function()
-      vim.keymap.set("n", "<leader>ff", ":Telescope<CR>", { silent = true }, { desc = "Telescope functions"})
-      vim.keymap.set("n", "ff", ":Telescope fd<CR>", { silent = true })
-      vim.keymap.set("n", "fs", ":Telescope current_buffer_fuzzy_find<CR>", { silent = true })
-      vim.keymap.set("n", "fS", ":Telescope live_grep<CR>", { silent = true })
-      vim.keymap.set("n", "fk", ":Telescope resume<CR>", { silent = true })
-      vim.keymap.set("n", "fd", ":Telescope buffers<CR>", { silent = true })
+      vim.keymap.set("n", "<leader>t", ":Telescope<CR>", { silent = true })
+      vim.keymap.set("n", "<leader>f", ":Telescope find_files<CR>", { silent = true })
+      vim.keymap.set("n", "<leader>S", ":Telescope current_buffer_fuzzy_find<CR>", { silent = true })
+      vim.keymap.set("n", "<leader>s", ":Telescope live_grep<CR>", { silent = true })
+      vim.keymap.set("n", "<leader>k", ":Telescope resume<CR>", { silent = true })
+      vim.keymap.set("n", "<leader>b", ":Telescope buffers<CR>", { silent = true })
+      vim.keymap.set("n", "<leader>r", ":Telescope oldfiles<CR>", { silent = true })
+
       local telescope = require("telescope")
       telescope.setup({
         defaults = {
@@ -30,10 +32,10 @@ return {
           layout_strategy = "horizontal",
           layout_config = {
             prompt_position = "bottom",
-            preview_width = 0.46,
+            preview_width = 0.5,
             preview_cutoff = 1,
-            width = 0.9,
-            height = 0.9,
+            width = 0.92,
+            height = 0.95,
           },
 
           preview = {
@@ -51,9 +53,9 @@ return {
 
         extensions = {
           fzf = {
-            fuzzy = false,
-            override_generic_sorter = false,
-            override_file_sorter = false,
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
             case_mode = "smart_case",
           },
         },
@@ -61,7 +63,7 @@ return {
 
       pcall(telescope.load_extension, "fzf")
       local builtin = require("telescope.builtin")
-      vim.keymap.set("n", "fh", function()
+      vim.keymap.set("n", "<leader>h", function()
         builtin.find_files({
           hidden = true,
           find_command = (vim.fn.executable("fd") == 1)

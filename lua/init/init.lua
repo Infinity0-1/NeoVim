@@ -42,6 +42,10 @@ vim.opt.backup = false
 vim.opt.swapfile = false
 vim.opt.writebackup = false
 
+vim.opt.scrolloff = 2
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
 vim.opt.wrap = false
 vim.opt.linebreak = true
 vim.opt.breakindent = false
