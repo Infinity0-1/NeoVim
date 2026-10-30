@@ -2,7 +2,7 @@ vim.keymap.set("n", "<C-Q>", ":%bdelete! | restart<CR>", { silent = true })
 vim.keymap.set("n", "Q", ":bdelete!<CR>", { silent = true })
 
 vim.keymap.set("t", "<C-Tab>", [[<C-\><C-n><C-Tab>]], { silent = true, remap = true })
-vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>:]], { silent = true })
+vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]], { silent = true })
 vim.keymap.set("n", "<C-t>", ":terminal<CR>i", { silent = true })
 
 vim.keymap.set("n", "<C-Tab>", ":bnext<CR>", { silent = true })
@@ -19,11 +19,13 @@ vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { silent = true })
 
 vim.keymap.set("v", ">", ">gv", { silent = true })
 vim.keymap.set("v", "<", "<gv", { silent = true })
-vim.keymap.set("v", "Y", "\"+y", { silent = true })
 
-vim.keymap.set("v", "<C-p>", "\"+p", { silent = true })
-vim.keymap.set("v", "<leader>p", "\"_dp", { silent = true })
 vim.keymap.set("v", "<leader>P", "\"_d\"+p", { silent = true })
+vim.keymap.set("v", "<leader>p", "\"_dp", { silent = true })
+vim.keymap.set("v", "<C-p>", "\"+p", { silent = true })
+
+vim.keymap.set("n", "YY", ":%y+<CR>")
+vim.keymap.set("v", "Y", "\"+y")
 
 vim.keymap.set("n", "<C-h>", "<C-w>h", { silent = true })
 vim.keymap.set("n", "<C-j>", "<C-w>j", { silent = true })
@@ -31,6 +33,7 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", { silent = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { silent = true })
 
 vim.keymap.set("n", "<leader>R", [[:%s/\<<C-r><C-w>\>//g<Left><Left>]], { silent = false })
+vim.keymap.set("v", "<leader>R", [["+y:%s/<C-r>+//g<Left><Left>]], { silent = false })
 
 local function buf_dir()
   if vim.bo.filetype == "oil" then

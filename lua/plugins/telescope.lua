@@ -61,6 +61,7 @@ return {
         },
       })
 
+      telescope.load_extension("yank_history")
       pcall(telescope.load_extension, "fzf")
       local builtin = require("telescope.builtin")
       vim.keymap.set("n", "<leader>h", function()

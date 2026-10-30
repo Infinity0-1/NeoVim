@@ -22,7 +22,7 @@ end
 
 vim.api.nvim_create_autocmd("ColorScheme", {
   callback = function()
-    vim.api.nvim_set_hl(0, "CursorLine", { bg = "#282828" })
+    vim.api.nvim_set_hl(0, "CursorLine", { bg = "#292929" })
     vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#d0d0d0", bold = true })
   end,
 })

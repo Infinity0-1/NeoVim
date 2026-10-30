@@ -1,7 +1,6 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    lazy = false,
     event = { "BufReadPre", "BufNewFile" },
     config = function()
 
@@ -53,13 +52,7 @@ return {
       })
 
       vim.lsp.config("clangd", {
-        cmd = {
-          "clangd",
-          "--background-index",
-          "--header-insertion=never",
-          "--completion-style=detailed",
-        },
-
+        cmd = { "clangd", "--background-index", "--header-insertion=never", "--completion-style=detailed" },
         root_dir = root_or_cwd({ "compile_commands.json", "compile_flags.txt", ".clangd", ".git" }),
       })
 
@@ -67,14 +60,7 @@ return {
         root_dir = root_or_cwd({ ".git" }),
       })
 
-      vim.lsp.enable({
-        "lua_ls",
-        "texlab",
-        "pyright",
-        "clangd",
-        "rust_analyzer",
-        "bashls",
-      })
+      vim.lsp.enable({ "lua_ls", "texlab", "pyright", "clangd", "rust_analyzer", "bashls" })
 
       local diagnostics_visible = false
       local function apply_diagnostics()
@@ -99,6 +85,7 @@ return {
           local map = function(keys, fn, desc)
             vim.keymap.set("n", keys, fn, { buffer = args.buf, desc = "LSP: " .. desc })
           end
+
           map("gd", vim.lsp.buf.definition, "go to definition")
           map("gD", vim.lsp.buf.declaration, "go to declaration")
           map("<leader>e", vim.diagnostic.open_float, "show diagnostic")
@@ -106,5 +93,84 @@ return {
         end,
       })
     end,
-  }
+  },
+
+  {
+    "hrsh7th/nvim-cmp",
+    lazy = true,
+    event = "InsertEnter",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      {
+        "L3MON4D3/LuaSnip",
+        version = "v2.*",
+        build = "make install_jsregexp",
+        dependencies = { "rafamadriz/friendly-snippets" },
+      },
+
+      "saadparwaiz1/cmp_luasnip",
+    },
+
+    config = function()
+    local cmp = require("cmp")
+    local luasnip = require("luasnip")
+    require("luasnip.loaders.from_vscode").lazy_load()
+    vim.lsp.config("*", {
+      capabilities = require("cmp_nvim_lsp").default_capabilities(),
+    })
+
+    cmp.setup({
+      completion = { completeopt = "menu,menuone,noinsert" },
+
+      snippet = {
+        expand = function(args)
+          luasnip.lsp_expand(args.body)
+        end,
+      },
+
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+      },
+
+      mapping = cmp.mapping.preset.insert({
+        ["<C-n>"] = cmp.mapping.select_next_item(),
+        ["<C-p>"] = cmp.mapping.select_prev_item(),
+        ["<Tab>"] = cmp.mapping.confirm({ select = false }),
+        ["<C-Space>"] = cmp.mapping(function()
+          if cmp.visible() then
+            cmp.close()
+          else
+            cmp.complete()
+          end
+        end, { "i", "s" }),
+      }),
+
+      sources = cmp.config.sources({
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "path" },
+      }, {
+        { name = "buffer", keyword_length = 3 },
+      }),
+
+      formatting = {
+        fields = { "abbr", "kind", "menu" },
+        format = function(entry, item)
+          item.menu = ({
+            nvim_lsp = "[LSP]",
+            luasnip = "[Snip]",
+            path = "[Path]",
+            buffer = "[Buf]",
+          })[entry.source.name]
+          return item
+        end,
+      },
+
+      experimental = { ghost_text = true },
+    })
+    end,
+  },
 }
