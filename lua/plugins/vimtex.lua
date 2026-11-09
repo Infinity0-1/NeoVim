@@ -63,11 +63,19 @@ return
 
   {
     "preservim/vim-textobj-quote",
-    event = "VeryLazy",
     dependencies = { "kana/vim-textobj-user" },
-    ft = { "markdown", "text", "latex" },
+    ft = { "markdown", "text", "tex" },
     config = function()
+      local group = vim.api.nvim_create_augroup("textobj_quote", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        group = group,
+        pattern = { "markdown", "text", "tex" },
+        callback = function()
+          vim.fn["textobj#quote#init"]()
+        end,
+      })
+
       vim.fn["textobj#quote#init"]()
     end,
-  }
+  },
 }

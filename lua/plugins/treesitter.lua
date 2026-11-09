@@ -24,6 +24,6 @@ return {
       end,
     })
 
-    vim.lsp.document_color.enable(false)
+    vim.lsp.document_color.enable(true)
   end,
 }

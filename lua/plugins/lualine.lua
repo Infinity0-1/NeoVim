@@ -6,7 +6,7 @@ return {
   config = function()
     local devicons = require("nvim-web-devicons")
     local date = { "datetime", style = "%H:%M", padding = { left = 1, right = 1 } }
-    local bg = "#131313"
+    local bg = "#2f2f2f"
     local fg = "#bbbbbb"
 
     local filename_component = {

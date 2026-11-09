@@ -58,13 +58,20 @@ vim.opt.tabstop = 4
 
 vim.opt.list = false
 vim.opt.spell = false
-vim.opt.listchars = {trail = '-',}
+vim.opt.listchars = { trail = '-' }
 vim.opt.spelllang = { "en_us" }
  
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.wrap = true
+  end,
+})
+
 require("vim._core.ui2").enable({
   enable = true,
   msg = {
     target = "cmd",
-    msg = { timeout = 600 },
   },
 })
